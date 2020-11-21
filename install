@@ -1,0 +1,51 @@
+#!/bin/bash
+
+function start {
+# Copying files
+echo "Starting setup .."
+sudo mkdir -p /bin/setIP
+sudo cp script.sh /bin/setIP
+sudo chmod +x script.sh
+sudo /bin/bash /bin/setIP/script.sh
+
+#backup of dhcpcd.conf
+echo "Making an backup of dhcpcd.conf"
+sudo mkdir -p /etc/backup
+sudo cp /etc/dhcpcd.conf /etc/backup
+
+}
+
+function write {
+
+#write static IP to dhcpcd.conf
+echo "Writing static IP to dhcpcd.conf"
+cat "/bin/setIP/installing" >> "/etc/dhcpcd.conf"
+
+}
+
+function end {
+
+# Delete installing cache
+echo "Cleaning up .."
+#sudo rm -rf /bin/setIP
+
+echo "Added static IP"
+}
+
+start
+
+if write; then
+end
+tput setaf 2; echo "..Please reboot the system before changes take effect"
+
+
+else
+tput setaf 1; echo "Write failed, permission errors?"
+echo "Please use sudo command, sudo ./install"
+
+fi
+
+
+
+#uncomment the lane under to view the dhcpcd.conf
+#nano /etc/dhcpcd.conf

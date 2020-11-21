@@ -1,0 +1,10 @@
+#backup of dhcpcd.conf
+echo "Removing static IP from dhcpcd.conf"
+sudo mv /etc/backup/dhcpcd.conf /etc
+
+#Cleaning up .."
+#sudo rm -rf /etc/backup
+
+echo "Removed static IP"
+echo ".. please reboot the system before changes takes effect"
+
