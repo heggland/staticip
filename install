@@ -27,7 +27,7 @@ function end {
 
 # Delete installing cache
 echo "Cleaning up .."
-#sudo rm -rf /bin/setIP
+sudo rm -rf /bin/setIP
 
 echo "Added static IP"
 }
