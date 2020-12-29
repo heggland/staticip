@@ -75,4 +75,4 @@ installer
 
 
 #uncomment the lane under to view the dhcpcd.conf
-#ssudo nano /etc/dhcpcd.conf
+#sudo nano /etc/dhcpcd.conf
