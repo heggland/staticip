@@ -1,6 +1,8 @@
 #!/bin/bash
 
+
 function start {
+check
 # Copying files
 echo "Starting setup .."
 sudo mkdir -p /bin/setIP
@@ -32,20 +34,45 @@ sudo rm -rf /bin/setIP
 echo "Added static IP"
 }
 
-start
 
+function priv {
+
+#check if error, most cases its because of user privileges
 if write; then
 end
 tput setaf 2; echo "..Please reboot the system before changes take effect"
-
-
 else
 tput setaf 1; echo "Write failed, permission errors?"
 echo "Please use sudo command, sudo ./install"
-
 fi
 
+}
+
+
+function check {
+
+#check if temp folder exist
+(if [ -d "/bin/setIP" ]; then
+    return 1
+    else
+    return 0
+fi
+)
+
+}
+
+function installer {
+if check; then
+   start
+   priv
+   return
+   else
+   priv
+fi
+}
+
+installer
 
 
 #uncomment the lane under to view the dhcpcd.conf
-#nano /etc/dhcpcd.conf
+#ssudo nano /etc/dhcpcd.conf
