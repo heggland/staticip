@@ -16,27 +16,22 @@ echo "Writing static IP to dhcpcd.conf"
 cat "installing" >> "/etc/dhcpcd.conf"
 }
 
-function end {
-# Delete installing cache
-echo "Cleaning up .."
-sudo rm -rf /etc/backup-temp
-echo "Added static IP"
-}
-
-
 function check {
 #check if error, most cases its because of user privileges
 if write; then
 end
 tput setaf 2; echo "..Please reboot the system before changes take effect"
 else
+if test -f "installing"; then
+echo "Write terminated."
+rm installer
+exit;;
+fi
 tput setaf 1; echo "Write failed, permission errors?"
 echo "Please use sudo command, sudo ./install"
 fi
 }
-
 start
 
-
-#uncomment the lane under to view the dhcpcd.conf
+#uncomment the lane below to view the dhcpcd.conf
 #sudo nano /etc/dhcpcd.conf
