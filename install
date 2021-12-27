@@ -31,6 +31,7 @@ tput setaf 1; echo "Write failed, permission errors?"
 echo "Please use sudo command, sudo ./install"
 fi
 }
+
 start
 
 #uncomment the lane below to view the dhcpcd.conf
