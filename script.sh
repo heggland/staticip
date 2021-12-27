@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 function checkNet {
 VAL="^[0-9]+([.][0-9]+)?$"
 
@@ -12,18 +10,13 @@ else
   echo not a number
   network
 fi
-
 }
-
 
 function network {
 echo  "Type network path (two first parts, example 192.168) : "
 read NETWORK
-#echo "You typed ${NETWORK}"
-
 checkNet "$NETWORK"
 }
-
 
 function checkHos {
 VAL="^[0-9]+([.][0-9]+)?$"
@@ -41,7 +34,6 @@ fi
 function host {
 echo "Type host path (two last parts, example 1.10) :"
 read HOST
-#echo "You typed ${HOST}"
 checkHos "$HOST"
 }
 
@@ -49,7 +41,6 @@ checkHos "$HOST"
 
 function checkRou {
 VAL="^[0-9]+([.][0-9]+)?$"
-
 if [[ $1 =~ $VAL ]]; then
   echo number
   write
@@ -57,14 +48,12 @@ else
   echo not a number
   router
 fi
-
 }
 
 
 function router {
 echo "Please type in network path to your router (two last parts, example 1.1) :"
 read ROUTER
-
 checkRou "$ROUTER"
 }
 
@@ -81,8 +70,6 @@ while true; do
 done
 
 }
-
-
 
 function install {
 echo "Your static IP will be: ${NETWORK}.${HOST}"
