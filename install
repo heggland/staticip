@@ -50,7 +50,7 @@ fi
 function installer {
 if check; then
    start
-   priv
+   errorHandle
    return
    else
    errorHandle
