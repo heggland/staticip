@@ -6,17 +6,13 @@ check
 echo "Starting setup .."
 sudo chmod +x script.sh
 sudo /bin/bash script.sh
-
-#backup of dhcpcd.conf
-echo "Making an backup of dhcpcd.conf"
-sudo mkdir -p /etc/backup-temp
-sudo cp /etc/dhcpcd.conf /etc/backup-temp
+# Check if everything is good
+check
 }
 
 function write {
 #write static IP to dhcpcd.conf
 echo "Writing static IP to dhcpcd.conf"
-#cat "/bin/setIP/installing" >> "/etc/dhcpcd.conf"
 cat "installing" >> "/etc/dhcpcd.conf"
 }
 
@@ -28,7 +24,7 @@ echo "Added static IP"
 }
 
 
-function errorHandle {
+function check {
 #check if error, most cases its because of user privileges
 if write; then
 end
@@ -39,25 +35,7 @@ echo "Please use sudo command, sudo ./install"
 fi
 }
 
-
-function check {
-#check if temp folder exist
-if [ -d "/etc/backup-temp" ]; then
-    sudo rm -rf "/etc/backup-temp"
-fi
-}
-
-function installer {
-if check; then
-   start
-   errorHandle
-   return
-   else
-   errorHandle
-fi
-}
-
-installer
+start
 
 
 #uncomment the lane under to view the dhcpcd.conf
