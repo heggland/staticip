@@ -2,7 +2,6 @@
 
 function checkNet {
 VAL="^[0-9]+([.][0-9]+)?$"
-
 if [[ $1 =~ $VAL ]]; then
   echo number
   host
@@ -28,7 +27,6 @@ else
   echo not a number
   host
 fi
-
 }
 
 function host {
@@ -36,8 +34,6 @@ echo "Type host path (two last parts, example 1.10) :"
 read HOST
 checkHos "$HOST"
 }
-
-
 
 function checkRou {
 VAL="^[0-9]+([.][0-9]+)?$"
@@ -50,14 +46,11 @@ else
 fi
 }
 
-
 function router {
 echo "Please type in network path to your router (two last parts, example 1.1) :"
 read ROUTER
 checkRou "$ROUTER"
 }
-
-
 
 function write {
 while true; do
@@ -68,7 +61,6 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
-
 }
 
 function install {
