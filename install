@@ -19,17 +19,18 @@ cat "installing" >> "/etc/dhcpcd.conf"
 function check {
 #check if error, most cases its because of user privileges
 if write; then
-end
 tput setaf 2; echo "..Please reboot the system before changes take effect"
+
 else
 if test -f "installing"; then
 echo "Write terminated."
-rm installer
 exit 1
 fi
 tput setaf 1; echo "Write failed, permission errors?"
 echo "Please use sudo command, sudo ./install"
 fi
+
+rm installer
 }
 
 start
