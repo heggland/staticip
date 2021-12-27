@@ -1,42 +1,34 @@
 #!/bin/bash
 
-
 function start {
 check
 # Copying files
 echo "Starting setup .."
-sudo mkdir -p /bin/setIP
-sudo cp script.sh /bin/setIP
 sudo chmod +x script.sh
-sudo /bin/bash /bin/setIP/script.sh
+sudo /bin/bash script.sh
 
 #backup of dhcpcd.conf
 echo "Making an backup of dhcpcd.conf"
-sudo mkdir -p /etc/backup
-sudo cp /etc/dhcpcd.conf /etc/backup
-
+sudo mkdir -p /etc/backup-temp
+sudo cp /etc/dhcpcd.conf /etc/backup-temp
 }
 
 function write {
-
 #write static IP to dhcpcd.conf
 echo "Writing static IP to dhcpcd.conf"
-cat "/bin/setIP/installing" >> "/etc/dhcpcd.conf"
-
+#cat "/bin/setIP/installing" >> "/etc/dhcpcd.conf"
+cat "installing" >> "/etc/dhcpcd.conf"
 }
 
 function end {
-
 # Delete installing cache
 echo "Cleaning up .."
-sudo rm -rf /bin/setIP
-
+sudo rm -rf /etc/backup-temp
 echo "Added static IP"
 }
 
 
-function priv {
-
+function errorHandle {
 #check if error, most cases its because of user privileges
 if write; then
 end
@@ -45,20 +37,14 @@ else
 tput setaf 1; echo "Write failed, permission errors?"
 echo "Please use sudo command, sudo ./install"
 fi
-
 }
 
 
 function check {
-
 #check if temp folder exist
-(if [ -d "/bin/setIP" ]; then
-    return 1
-    else
-    return 0
+if [ -d "/etc/backup-temp" ]; then
+    sudo rm -rf "/etc/backup-temp"
 fi
-)
-
 }
 
 function installer {
@@ -67,7 +53,7 @@ if check; then
    priv
    return
    else
-   priv
+   errorHandle
 fi
 }
 
