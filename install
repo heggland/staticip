@@ -25,7 +25,7 @@ else
 if test -f "installing"; then
 echo "Write terminated."
 rm installer
-exit;;
+exit 1
 fi
 tput setaf 1; echo "Write failed, permission errors?"
 echo "Please use sudo command, sudo ./install"
