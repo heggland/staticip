@@ -1,5 +1,9 @@
 #!/bin/bash
 
+function start {
+  network
+}
+
 function checkNet {
 VAL="^[0-9]+([.][0-9]+)?$"
 if [[ $1 =~ $VAL ]]; then
@@ -67,5 +71,3 @@ function install {
 echo "Your static IP will be: ${NETWORK}.${HOST}"
 echo -e " \n interface wlan0 \n static ip_address=${NETWORK}.${HOST}/24 \n static routers=${NETWORK}.${ROUTER} \n static domain_name_servers=${NETWORK}.${ROUTER} \n \n \n interface eth0 \n static ip_address=${NETWORK}.${HOST}/24 \n static routers=${NETWORK}.${ROUTER} \n static domain_name_servers=${NETWORK}.${ROUTER}" > installing
 }
-
-network

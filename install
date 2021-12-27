@@ -5,7 +5,7 @@ check
 # Copying files
 echo "Starting setup .."
 sudo chmod +x script.sh
-sudo /bin/bash script.sh
+sudo /bin/bash script.sh && start
 # Check if everything is good
 check
 }
