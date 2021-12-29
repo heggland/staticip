@@ -50,7 +50,6 @@ checkRou "$ROUTER"
 }
 
 function write {
-
 WLAN0="\ninterface wlan0"
 WLAN0+="\nstatic ip_address=${NETWORK}.${HOST}/24"
 WLAN0+="\nstatic routers=${NETWORK}.${ROUTER}"
@@ -97,8 +96,6 @@ if [[ $option == 1 ]]; then
 else
 echo "Your static IP on the wired interface will be: ${NETsWORK}.${HOST}"
 fi
-
-
 }
 
 
