@@ -21,7 +21,6 @@ function checkHos {
 VAL="^[0-9]+([.][0-9]+)?$"
 
 if [[ $1 =~ $VAL ]]; then
-  echo number
   router
 else
   echo not a number
@@ -55,7 +54,7 @@ checkRou "$ROUTER"
 function install {
 {
 while true; do
-    read -p "Do you want to set the interface?" yn
+    read -p "Do you want to set a interface?" yn
     case $yn in
         [Yy]* ) chooseInterface;  break;;
         [Nn]* ) echo -e " \ninterface wlan0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER} \n\n\ninterface eth0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER}" > installing; echo "Your static IP will be: ${NETWORK}.${HOST}"; break;;
@@ -82,7 +81,14 @@ while true; do
         * ) echo "Please enter 1 or 2.";;
     esac
 done
-echo "Your static IP on the ${option == 1 && "wireless" || option == 2 && "wired"} connection will be: ${NETWORK}.${HOST}"
+
+if [[ $option == 1 ]]; then
+  echo "Your static IP on the wireless interface will be: ${NETWORK}.${HOST}"
+else
+echo "Your static IP on the wired interface will be: ${NETsWORK}.${HOST}"
+fi
+
+
 }
 
 
