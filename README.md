@@ -28,7 +28,7 @@ sudo service dhcpcd status
 
 2. run ./install`
 
-``Uninstall:``
+``Uninstall``
 - This program has also an manual uninstall script which just open up the dhcpcd file. 
 
 
