@@ -11,7 +11,7 @@ fi
 }
 
 function network {
-echo  "Type network path (two first parts, example 192.168) : "
+echo  "Type network path (two first parts, example 192.168)"
 read NETWORK
 checkNet "$NETWORK"
 }
@@ -28,7 +28,7 @@ fi
 }
 
 function host {
-echo "Type host path (two last parts, example 1.10) :"
+echo "Type host path (two last parts, example 1.10)"
 read HOST
 checkHos "$HOST"
 }
@@ -44,7 +44,7 @@ fi
 }
 
 function router {
-echo "Please type in network path to your router (two last parts, example 1.1) :"
+echo "Please type in network path to your router (two last parts, example 1.1)"
 read ROUTER
 checkRou "$ROUTER"
 }
