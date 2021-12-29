@@ -1,39 +1,27 @@
 #!/bin/bash
 
+function runScript {
+sudo chmod +x script.sh
+sudo /bin/bash script.sh
+}
+
+function readFile {
+while true; do
+    tput setaf 7; read -p "Do you want to read the dhcpcd file?" yn
+    case $yn in
+        [Yy]* ) nano /etc/dhcpcd.conf;  break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no";;
+    esac
+done
+}
+
 function start {
-check
+#cleanTempFiles
 # Copying files
 echo "Starting setup .."
-sudo chmod +x script.sh
-sudo /bin/bash script.sh && start
-# Check if everything is good
-check
-}
-
-function write {
-#write static IP to dhcpcd.conf
-echo "Writing static IP to dhcpcd.conf"
-cat "installing" >> "/etc/dhcpcd.conf"
-}
-
-function check {
-#check if error, most cases its because of user privileges
-if write; then
-tput setaf 2; echo "..Please reboot the system before changes take effect"
-
-else
-if test -f "installing"; then
-echo "Write terminated."
-exit 1
-fi
-tput setaf 1; echo "Write failed, permission errors?"
-echo "Please use sudo command, sudo ./install"
-fi
-
-rm installer
+runScript
+readFile
 }
 
 start
-
-#uncomment the lane below to view the dhcpcd.conf
-#sudo nano /etc/dhcpcd.conf
