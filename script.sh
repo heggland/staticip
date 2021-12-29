@@ -3,7 +3,6 @@
 function checkNet {
 VAL="^[0-9]+([.][0-9]+)?$"
 if [[ $1 =~ $VAL ]]; then
-  echo number
   host
 else
   echo not a number
@@ -37,7 +36,6 @@ checkHos "$HOST"
 function checkRou {
 VAL="^[0-9]+([.][0-9]+)?$"
 if [[ $1 =~ $VAL ]]; then
-  echo number
   write
 else
   echo not a number
@@ -51,7 +49,7 @@ read ROUTER
 checkRou "$ROUTER"
 }
 
-function install {
+function write {
 {
 while true; do
     read -p "Do you want to set a interface?" yn
