@@ -30,7 +30,8 @@ Check if service is running.
 
 
 ## Uninstall
-- This program has also an manual uninstall script which just open up the dhcpcd file. 
+- Manual uninstall.
+The uninstall script open up the dhcpcd file with sudo privileges. 
 
 
 
