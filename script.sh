@@ -70,8 +70,9 @@ tput setaf 1; echo "Write failed, permission errors?/n Please use sudo command, 
 
 function chooseInterface {
 while true; do
-    echo "\n1. wlan0"
-    echo "2. eth0\n"
+    echo "Interfaces: "
+    echo "1. wireless (wlan0)"
+    echo "2. wired (eth0)"
     read -p "Choose an option: " option
     case $option in
         [1]* ) echo -e " \ninterface wlan0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER}" > installing; break;;
