@@ -52,29 +52,37 @@ read ROUTER
 checkRou "$ROUTER"
 }
 
-function write {
+function install {
+{
 while true; do
-    read -p "Do you want to set ${NETWORK}.${HOST} as static IP?" yn
+    read -p "Do you want to set the interface?" yn
     case $yn in
-        [Yy]* ) install;  break;;
-        [Nn]* ) tput setaf 3; echo "Write terminated."; exit;;
+        [Yy]* ) chooseInterface;  break;;
+        [Nn]* ) echo -e " \ninterface wlan0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER} \n\n\ninterface eth0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER}" > installing; echo "Your static IP will be: ${NETWORK}.${HOST}"; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
-}
 
-
-
-function install {
-echo "Your static IP will be: ${NETWORK}.${HOST}"
-{
-echo -e " \ninterface wlan0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER} \n\n\ninterface eth0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER}" > installing
 cat "installing" >> "/etc/dhcpcd.conf"
 tput setaf 2; echo "Success"; echo "..Please reboot the system before changes take effect"
 } || {
 tput setaf 1; echo "Write failed, permission errors?/n Please use sudo command, sudo ./install"
 }
 
+}
+
+function chooseInterface {
+while true; do
+    echo "\n1. wlan0"
+    echo "2. eth0\n"
+    read -p "Choose an option: " option
+    case $option in
+        [1]* ) echo -e " \ninterface wlan0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER}" > installing; break;;
+        [2]* ) echo -e " \ninterface eth0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER}" > installing; break;;
+        * ) echo "Please enter 1 or 2.";;
+    esac
+done
+echo "Your static IP on the ${option == 1 && "wireless" || option == 2 && "wired"} connection will be: ${NETWORK}.${HOST}"
 }
 
 
