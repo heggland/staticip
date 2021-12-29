@@ -50,12 +50,23 @@ checkRou "$ROUTER"
 }
 
 function write {
+
+WLAN0="\ninterface wlan0"
+WLAN0+="\nstatic ip_address=${NETWORK}.${HOST}/24"
+WLAN0+="\nstatic routers=${NETWORK}.${ROUTER}"
+WLAN0+="\nstatic domain_name_servers=${NETWORK}.${ROUTER}"
+
+ETH0="\ninterface eth0"
+ETH0+="\nstatic ip_address=${NETWORK}.${HOST}/24"
+ETH0+="\nstatic routers=${NETWORK}.${ROUTER}"
+ETH0+="\nstatic domain_name_servers=${NETWORK}.${ROUTER}"
+
 {
 while true; do
     read -p "Do you want to set a interface?" yn
     case $yn in
         [Yy]* ) chooseInterface;  break;;
-        [Nn]* ) echo -e " \ninterface wlan0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER} \n\n\ninterface eth0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER}" > installing; echo "Your static IP will be: ${NETWORK}.${HOST}"; break;;
+        [Nn]* ) echo -e "${WLAN0}\n${ETH0}" > installing; echo "Your static IP will be: ${NETWORK}.${HOST}"; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
@@ -75,8 +86,8 @@ while true; do
     echo "2. wired (eth0)"
     read -p "Choose an option: " option
     case $option in
-        [1]* ) echo -e " \ninterface wlan0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER}" > installing; break;;
-        [2]* ) echo -e " \ninterface eth0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER}" > installing; break;;
+        [1]* ) echo -e "\n${WLAN0}" > installing; break;;
+        [2]* ) echo -e "\n${ETH0}" > installing; break;;
         * ) echo "Please enter 1 or 2.";;
     esac
 done
