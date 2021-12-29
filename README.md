@@ -17,11 +17,11 @@ to dhcpcd.conf file.
 
 ## Install
 1. Check if DHCPCD is activated
-sudo service dhcpcd status
+`sudo service dhcpcd status`
 
-* if not active, run these commands:
-- sudo service dhcpcd start
-- sudo systemctl enable dhcpcd
+* if not active, run these commands 
+`sudo service dhcpcd start`
+`sudo systemctl enable dhcpcd`
 
 2. run ./install`
 
