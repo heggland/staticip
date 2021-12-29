@@ -31,7 +31,7 @@ Check if service is running.
 
 The uninstall script open up the dhcpcd file with sudo privileges. 
 
-<br/>
+.
 
 
 
