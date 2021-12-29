@@ -1,5 +1,3 @@
-#!/bin/bash
-
 function runScript {
 sudo chmod +x script.sh
 sudo /bin/bash script.sh
@@ -17,8 +15,6 @@ done
 }
 
 function start {
-#cleanTempFiles
-# Copying files
 echo "Starting setup .."
 runScript
 readFile
