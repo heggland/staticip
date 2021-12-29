@@ -56,16 +56,31 @@ function write {
 while true; do
     read -p "Do you want to set ${NETWORK}.${HOST} as static IP?" yn
     case $yn in
-        [Yy]* )install;  break;;
-        [Nn]* ) exit;;
+        [Yy]* ) install;  break;;
+        [Nn]* ) tput setaf 3; echo "Write terminated."; exit;;
         * ) echo "Please answer yes or no.";;
     esac
 done
 }
 
+
+
 function install {
 echo "Your static IP will be: ${NETWORK}.${HOST}"
 echo -e " \n interface wlan0 \n static ip_address=${NETWORK}.${HOST}/24 \n static routers=${NETWORK}.${ROUTER} \n static domain_name_servers=${NETWORK}.${ROUTER} \n \n \n interface eth0 \n static ip_address=${NETWORK}.${HOST}/24 \n static routers=${NETWORK}.${ROUTER} \n static domain_name_servers=${NETWORK}.${ROUTER}" > installing
+
+{
+cat "installing" >> "/etc/dhcpcd.conf"
+} || {
+tput setaf 1; echo "Write failed, permission errors?/n Please use sudo command, sudo ./install"
 }
 
-network
+}
+
+
+function start {
+  network
+}
+
+start
+
