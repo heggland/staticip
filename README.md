@@ -1,6 +1,4 @@
-# staticip
-
-`Set static ip for raspberry pi`
+# Set static IP for raspberry pi
 
 Simple program that writes
 ```
@@ -17,8 +15,7 @@ static domain_name_servers=
 to dhcpcd.conf file.
 
 
-
-``Install``
+##Install
 1. Check if DHCPCD is activated
 sudo service dhcpcd status
 
@@ -28,7 +25,7 @@ sudo service dhcpcd status
 
 2. run ./install`
 
-``Uninstall``
+##Uninstall
 - This program has also an manual uninstall script which just open up the dhcpcd file. 
 
 
