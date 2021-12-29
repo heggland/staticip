@@ -16,14 +16,16 @@ to dhcpcd.conf file.
 
 
 ## Install
-1. Run the install script with this command \n`./install`
+1. Run the install script with this command 
+- `./install`
 
 If dhcpcd error occurs.. it might not be running. 
 Use these commands to start and enable dhcpcd service.
-\n```sudo service dhcpcd start```
-\n```sudo systemctl enable dhcpcd```
-- Check if service is running.
-\n```sudo service dhcpcd status```
+- `sudo service dhcpcd start`
+- `sudo systemctl enable dhcpcd`
+
+Check if service is running.
+- `sudo service dhcpcd status`
 
 
 
