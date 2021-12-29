@@ -28,10 +28,10 @@ Check if service is running.
 
 ## Uninstall
 - Manual uninstall.
+
 The uninstall script open up the dhcpcd file with sudo privileges. 
 
-## .
-
+<br/>
 
 
 
