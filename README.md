@@ -20,10 +20,10 @@ to dhcpcd.conf file.
 
 If dhcpcd error occurs.. it might not be running. 
 Use these commands to start and enable dhcpcd service.
-`sudo service dhcpcd start`
-`sudo systemctl enable dhcpcd`
+```sudo service dhcpcd start```
+```sudo systemctl enable dhcpcd```
 - Check if service is running.
-`sudo service dhcpcd status`
+```sudo service dhcpcd status```
 
 
 
