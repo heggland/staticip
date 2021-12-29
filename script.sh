@@ -67,10 +67,10 @@ done
 
 function install {
 echo "Your static IP will be: ${NETWORK}.${HOST}"
-echo -e " \n interface wlan0 \n static ip_address=${NETWORK}.${HOST}/24 \n static routers=${NETWORK}.${ROUTER} \n static domain_name_servers=${NETWORK}.${ROUTER} \n \n \n interface eth0 \n static ip_address=${NETWORK}.${HOST}/24 \n static routers=${NETWORK}.${ROUTER} \n static domain_name_servers=${NETWORK}.${ROUTER}" > installing
-
 {
+echo -e " \ninterface wlan0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER} \n\n\ninterface eth0 \nstatic ip_address=${NETWORK}.${HOST}/24 \nstatic routers=${NETWORK}.${ROUTER} \nstatic domain_name_servers=${NETWORK}.${ROUTER}" > installing
 cat "installing" >> "/etc/dhcpcd.conf"
+tput setaf 2; echo "Success"; echo "..Please reboot the system before changes take effect"
 } || {
 tput setaf 1; echo "Write failed, permission errors?/n Please use sudo command, sudo ./install"
 }
