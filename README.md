@@ -21,7 +21,9 @@ It gets 2 IP addresses?? ![image](https://github.com/heggland/staticip/assets/26
 
 #### Works on  (need to be tested with new rpi os)
 [✅] - rpi4b
+
 [✅] - rpi0w
+
 [✅] - rpi02w 
 
 ## Prerequisites
