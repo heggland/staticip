@@ -14,7 +14,21 @@ static domain_name_servers=
 ```
 to dhcpcd.conf file.
 
+### Raspberry pi 5
+- Raspberry pi 5. Dhcpcd package is missing from the latest raspberry pi os (64bit). Install it before running ./install.
+It gets 2 IP addresses?? ![image](https://github.com/heggland/staticip/assets/26274036/dc586404-0367-4047-8e64-3fad31db7ffd)
+
+
+#### Works on  (need to be tested with new rpi os)
+[✅] - rpi4b
+[✅] - rpi0w
+[✅] - rpi02w 
+
+## Prerequisites
+- dhcpcd package, install with `sudo apt install dhcpcd`
+
 ## Install
+
 1. Run the install script with this command 
 - `./install`
 
